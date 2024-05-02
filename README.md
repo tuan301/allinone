@@ -24,7 +24,3 @@ This allows you to bypass with only 1 slash command `/bypass` only using Chili A
       ```shell
    pip install requests
    ```
-
-## Join Us
-
-    https://discord.gg/eefZft8knb
