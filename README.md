@@ -13,14 +13,11 @@ This allows you to bypass with only 1 slash command `/bypass` only using Chili A
 1. Clone the repository or download the script.
 
 2. Install the required libraries using pip:
+## NEXTCORD SUPPORTS
    ```shell
-   pip install discord
+   pip install nextcord
    ```
-
-      ```shell
-   pip install discord
-   ```
-
-      ```shell
+   
+   ```shell
    pip install requests
    ```
