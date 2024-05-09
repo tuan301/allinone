@@ -1,10 +1,9 @@
-import nextcord
-import discord
 import requests
 import datetime
-from discord.ext import commands
+from nextcord.ext import commands
+import nextcord
 
-intents = discord.Intents.all()
+intents = nextcord.Intents.all()
 intents.members = True
 intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
@@ -46,10 +45,10 @@ def get_api_link(link):
         return f"https://stickx.top/api-vegax/?hwid={link}&api_key={apikey}"
     else:
         return f"http://optimus.forcehost.net:25637/bypass?link={link}&key={apikey}"
-    
+
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="TEST"))
+    await bot.change_presence(activity=nextcord.Activity(type=nextcord.ActivityType.watching, name="TEST"))
     print(f"Login As {bot.user}")
 
 @bot.slash_command(name="bypass")
@@ -59,7 +58,7 @@ async def bypass(ctx, link: str):
         return
 
     start_time = datetime.datetime.now()
-    wait_message = await ctx.send(embed=discord.Embed(title="In Process ⏳", description="Try 2 times when it not sending key", color=0xffff00))
+    wait_message = await ctx.send(embed=nextcord.Embed(title="In Process ⏳", description="Try 2 times when it not sending key", color=0xffff00))
 
     api_link = get_api_link(link)
     try:
@@ -72,49 +71,39 @@ async def bypass(ctx, link: str):
             key = json_data.get("key")
             status = json_data.get("success")
 
+            embed = None
             if "vegax" in api_link:
                 if status == False:
-                    embed = discord.Embed(title="Error ❌", description="```Invalid Link or Not Support```", color=0xFF0000)
+                    embed = nextcord.Embed(title="Error ❌", description="```Invalid Link or Not Support```", color=0xFF0000)
                     embed.add_field(name="Your Link:", value=f"```\n{link}\n```", inline=False)
                 else:
-                    embed = discord.Embed(title="Status:", description=f"**Key:**```{key}```", color=0xA020F0)
-                    embed.add_field(name="Your Link:", value=f"```\n{link}\n```", inline=False)
-                    embed.set_thumbnail(url="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHB6NjdiNDNlczkxb2xoc2Rnb3dmeXhmNmpmNWNhMHdiZmt3ZnZtYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/vw9S0E15Tgk4E/giphy.gif")
-                    embed.set_footer(text=f"| just testing |")
-                    embed.timestamp = datetime.datetime.now(datetime.timezone.utc)
+                    embed = nextcord.Embed(title="Status:", description=f"**Key:**```{key}```", color=0xA020F0)
             elif "evon" in api_link:
                 if status == False:
-                    embed = discord.Embed(title="Error ❌", description="```Invalid Link or Not Support```", color=0xFF0000)
+                    embed = nextcord.Embed(title="Error ❌", description="```Invalid Link or Not Support```", color=0xFF0000)
                     embed.add_field(name="Your Link:", value=f"```\n{link}\n```", inline=False)
                 else:
-                    embed = discord.Embed(title="Status:", description=f"**Key:**```{key}```", color=0xA020F0)
-                    embed.add_field(name="Your Link:", value=f"```\n{link}\n```", inline=False)
-                    embed.set_thumbnail(url="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHB6NjdiNDNlczkxb2xoc2Rnb3dmeXhmNmpmNWNhMHdiZmt3ZnZtYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/vw9S0E15Tgk4E/giphy.gif")
-                    embed.set_footer(text=f"| just testing |")
-                    embed.timestamp = datetime.datetime.now(datetime.timezone.utc)
+                    embed = nextcord.Embed(title="Status:", description=f"**Key:**```{key}```", color=0xA020F0)
             elif "rblx" in api_link:
                 if status == False:
-                    embed = discord.Embed(title="Error ❌", description="```Invalid Link or Not Support```", color=0xFF0000)
+                    embed = nextcord.Embed(title="Error ❌", description="```Invalid Link or Not Support```", color=0xFF0000)
                     embed.add_field(name="Your Link:", value=f"```\n{link}\n```", inline=False)
                 else:
-                    embed = discord.Embed(title="Status:", description=f"**Key:**```{key}```", color=0xA020F0)
-                    embed.add_field(name="Your Link:", value=f"```\n{link}\n```", inline=False)
-                    embed.set_thumbnail(url="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHB6NjdiNDNlczkxb2xoc2Rnb3dmeXhmNmpmNWNhMHdiZmt3ZnZtYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/vw9S0E15Tgk4E/giphy.gif")
-                    embed.set_footer(text=f"| just testing |")
-                    embed.timestamp = datetime.datetime.now(datetime.timezone.utc)
+                    embed = nextcord.Embed(title="Status:", description=f"**Key:**```{key}```", color=0xA020F0)
             else:
                 if status == False:
-                    embed = discord.Embed(title="Error ❌", description="```Invalid Link or Not Support```", color=0xFF0000)
+                    embed = nextcord.Embed(title="Error ❌", description="```Invalid Link or Not Support```", color=0xFF0000)
                     embed.add_field(name="Your Link:", value=f"```\n{link}\n```", inline=False)
                 else:
-                    embed = discord.Embed(title="Status:", description=f"```{result}```", color=0xA020F0)
-                    embed.add_field(name="Your Link:", value=f"```\n{link}\n```", inline=False)
-                    embed.set_thumbnail(url="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHB6NjdiNDNlczkxb2xoc2Rnb3dmeXhmNmpmNWNhMHdiZmt3ZnZtYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/vw9S0E15Tgk4E/giphy.gif")
-                    embed.set_footer(text=f"| just testing |")
-                    embed.timestamp = datetime.datetime.now(datetime.timezone.utc)
+                    embed = nextcord.Embed(title="Status:", description=f"```{result}```", color=0xA020F0)
+            if embed is not None:
+                embed.add_field(name="Your Link:", value=f"```{link}```", inline=False)
+                embed.set_image(url="https://cdn.discordapp.com/attachments/1222148598263971920/1222148967517650985/rainbow-1-1.gif?ex=661529ec&is=6602b4ec&hm=15e7436f0849d4bd9a9027d207681eb886dd8c0990955e335743c7005c227df5&")
+                embed.set_footer(text=f"| TEST |")
+                embed.timestamp = datetime.datetime.now(datetime.timezone.utc)
 
     except requests.RequestException as e:
-        embed = discord.Embed(title="Error ❌", description=f"```api offline```", color=0xFF0000)
+        embed = nextcord.Embed(title="Error ❌", description=f"```api offline```", color=0xFF0000)
 
     await wait_message.edit(embed=embed)
 
