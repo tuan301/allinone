@@ -40,10 +40,10 @@ def get_api_link(link):
             return f"https://stickx.top/api-rblx/?hub={hubname}&hwid={link}&api_key={apikey}"
     
     if "evon" in link:
-            linkk = link.replace("https://pandadevelopment.net/getkey?service=evon&hwid=", "")
+        linkk = link.replace("https://pandadevelopment.net/getkey?service=evon&hwid=", "")
         return f"https://stickx.top/api-evon/?hwid={linkk}&api_key={apikey}"
     elif "vegax" in link:
-            linkk = link.replace("https://pandadevelopment.net/getkey?service=vegax&hwid=", "")
+        linkk = link.replace("https://pandadevelopment.net/getkey?service=vegax&hwid=", "")
         return f"https://stickx.top/api-vegax/?hwid={linkk}&api_key={apikey}"
     else:
         return f"http://optimus.forcehost.net:25637/bypass?link={link}&key={apikey}"
